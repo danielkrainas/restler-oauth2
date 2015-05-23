@@ -48,5 +48,5 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint', 'mochaTest']);
     grunt.registerTask('default', 'test');
     grunt.registerTask('coverage', ['mocha_istanbul']);
-    grunt.registerTask('coverage:report', ['mocha_istanbul', 'codeclimate']);
+    grunt.registerTask('coverage:report', ['coverage', 'codeclimate']);
 };
