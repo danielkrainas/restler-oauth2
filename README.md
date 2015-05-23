@@ -1,4 +1,4 @@
-# Restler-OAuth2
+# Restler-OAuth2 [![Quality](https://codeclimate.com/github/danielkrainas/restler-oauth2/badges/gpa.svg)](https://codeclimate.com/github/danielkrainas/restler-oauth2) [![Build](https://img.shields.io/codeship/5a55d090-e3b6-0132-7527-5e88bc3b0df8/master.svg)](https://codeship.com/projects/81746) [![Test Coverage](https://codeclimate.com/github/danielkrainas/restler-oauth2/badges/coverage.svg)](https://codeclimate.com/github/danielkrainas/restler-oauth2/coverage)
 
 Adds automatic OAuth2 authentication support and token to Restler services.
 
