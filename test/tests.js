@@ -11,20 +11,18 @@ var noop = function () {};
 
 describe('Extension', function () {
     beforeEach(function () {
-        restler = {
-            Service: function () {
-                this.defaults = {};
-            }
-        };
-
+        restler = {};
+        restler.Service = function () {};
         restler.Service.prototype = {
+            constructor: restler.Service,
             request: noop,
             get: noop,
             patch: noop,
             put: noop,
             post: noop,
             json: noop,
-            del: noop
+            del: noop,
+            defaults: {}
         };
     });
 
@@ -57,11 +55,11 @@ describe('Extension', function () {
             restler.Service.prototype.post = handler;
         });
 
-        it('should pass calls on to the original handler', function (done) {
+        it('should pass calls on to the original handler', function () {
             oauth2.install(restler);
             var svc = new restler.Service();
             svc.post('', {});
-            expect(handler).should.have.been.calledOnce;
+            expect(handler).to.have.been.calledOnce;
         });
     });
 });
