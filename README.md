@@ -8,7 +8,16 @@ Restler-OAuth2 can be installed via [npm](https://npmjs.org):
 
     $ npm install restler-oauth2
 
-## Simple Usage
+## Example
+
+```js
+var restler = require('restler');
+var oauth2 = require('restler-oauth2');
+
+oauth2.install(restler, {
+    
+});
+```
 
 ## API 
 

@@ -1,7 +1,7 @@
 {
   "name": "restler-oauth2",
   "version": "0.1.0",
-  "description": "Extends restler with OAuth2 support",
+  "description": "Adds automatic OAuth2 authentication support and token to Restler services.",
   "main": "index.js",
   "private": false,
   "repository": {
