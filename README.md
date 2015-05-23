@@ -15,7 +15,7 @@ var restler = require('restler');
 var oauth2 = require('restler-oauth2');
 
 oauth2.install(restler, {
-    
+    reauthStatusCode: '401'
 });
 ```
 
