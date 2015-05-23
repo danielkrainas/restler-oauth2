@@ -27,7 +27,7 @@ describe('Extension', function () {
     });
 
     describe('install:', function () {
-        it('should install in the Service prototype by default', function () {
+        it('should modify the Service prototype by default', function () {
             expect(oauth2.install(restler)).to.be.true;
 
             expect(restler.Service.prototype.request).to.not.equal(noop);
@@ -47,11 +47,13 @@ describe('Extension', function () {
         });
     });
 
-    describe('interceptor:', function () {
+    describe('injector:', function () {
         var handler;
+        var emitter;
 
         beforeEach(function () {
-            handler = sinon.stub().returns(new EventEmitter());
+            emitter = new EventEmitter();
+            handler = sinon.stub().returns(emitter);
             restler.Service.prototype.post = handler;
         });
 
@@ -60,6 +62,34 @@ describe('Extension', function () {
             var svc = new restler.Service();
             svc.post('', {});
             expect(handler).to.have.been.calledOnce;
+        });
+    });
+
+    describe('interceptor:', function () {
+        var request = {
+            on: sinon.spy()
+        };
+
+        beforeEach(function () {
+            request = {
+                on: sinon.spy()
+            };
+
+            restler.Service.prototype.post = sinon.stub().returns(request);
+        });
+
+        it('should subscribe to event 401 by default on request objects', function () {
+            oauth2.install(restler);
+            var svc = new restler.Service();
+            svc.post('', {});
+            expect(request.on).to.have.been.calledWith(401);
+        });
+
+        it('should subscribe to custom event when option.reauthStatusCode is specified', function () {
+            oauth2.install(restler, { reauthStatusCode: 777 });
+            var svc = new restler.Service();
+            svc.post('', {});
+            expect(request.on).to.have.been.calledWith(777);
         });
     });
 });
